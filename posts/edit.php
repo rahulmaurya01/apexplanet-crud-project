@@ -31,10 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim((string) ($_POST['title'] ?? ''));
     $content = trim((string) ($_POST['content'] ?? ''));
 
-    if ($title === '' || strlen($title) > 255) {
-        $error = 'Title is required (max 255 characters).';
-    } elseif ($content === '') {
-        $error = 'Content is required.';
+    $error = validatePostTitle($title) ?? validatePostContent($content);
+    if ($error !== null) {
+        // Error already set by validators.
     } else {
         $upd = $pdo->prepare('UPDATE posts SET title = :t, content = :c WHERE id = :id');
         $upd->execute(['t' => $title, 'c' => $content, 'id' => $id]);
@@ -60,7 +59,7 @@ layoutHeader('Edit post', 'posts');
            value="<?php echo htmlspecialchars($_POST['title'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 
     <label for="content">Content</label>
-    <textarea id="content" name="content" rows="10" required><?php echo htmlspecialchars($_POST['content'] ?? '', ENT_QUOTES, 'UTF-8'); ?></textarea>
+    <textarea id="content" name="content" rows="10" required minlength="10" maxlength="5000"><?php echo htmlspecialchars($_POST['content'] ?? '', ENT_QUOTES, 'UTF-8'); ?></textarea>
 
     <div class="form-actions">
         <button type="submit" class="btn primary">Update post</button>

@@ -38,11 +38,21 @@ apexplanet-crud-project/
 - **Pagination:** 5 posts per page; page numbers + Prev/Next; search query preserved in URLs
 - **UI:** Toolbar, search bar, pagination, responsive tweaks (`assets/style.css`)
 
+## Task 4 — What works
+
+- **Prepared statements everywhere:** post list count, search, insert, update, delete, login/register checks
+- **Server-side validation:** centralized checks in `includes/validation.php` for username, password, title, and content
+- **Client-side validation:** `pattern`, `minlength`, and `maxlength` attributes on auth/post forms
+- **Secure session handling:** cookie flags (`HttpOnly`, `SameSite=Lax`, conditional `Secure`) + session ID regeneration at login
+- **User roles and permissions:** `users.role` (`admin` / `editor`) with role checks in `includes/auth.php`; only admin can delete posts
+
 ## Run locally (XAMPP)
 
 1. Start Apache and MySQL.
 2. Put the project under `htdocs` (e.g. `C:\xampp\htdocs\apexplanet-crud-project`).
 3. Import `database/schema.sql` once (creates `blog`, `users`, `posts`).
+   - For existing Task 2/3 DB, run once: `ALTER TABLE users ADD COLUMN role ENUM('admin','editor') NOT NULL DEFAULT 'editor';`
+   - Optional: make your account admin: `UPDATE users SET role='admin' WHERE username='your_username';`
 4. Open `http://localhost/apexplanet-crud-project/`
 5. Register a user, then manage posts from **Posts** / **New post**.
 
@@ -51,5 +61,5 @@ apexplanet-crud-project/
 - [x] Task 1: Setting up development environment
 - [x] Task 2: Basic CRUD application
 - [x] Task 3: Advanced features implementation
-- [ ] Task 4: Security enhancements
+- [x] Task 4: Security enhancements
 - [ ] Task 5: Final project and certification

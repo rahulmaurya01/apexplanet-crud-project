@@ -102,6 +102,16 @@ a:hover {
     border: 1px solid var(--border);
 }
 
+.role-pill {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    padding: 0.2rem 0.55rem;
+    background: rgba(61, 214, 195, 0.18);
+    border-radius: 999px;
+    border: 1px solid rgba(61, 214, 195, 0.5);
+}
+
 .main {
     padding: 2rem 0 3rem;
 }
@@ -421,6 +431,11 @@ a.page-link:hover {
     opacity: 0.45;
     cursor: not-allowed;
     pointer-events: none;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 0.85rem;
 }
 
 @media (max-width: 520px) {

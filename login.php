@@ -20,14 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($username === '' || $password === '') {
         $error = 'Please enter username and password.';
+    } elseif (validateUsername($username) !== null) {
+        $error = 'Invalid username format.';
     } else {
         $pdo = getDatabaseConnection();
-        $stmt = $pdo->prepare('SELECT id, username, password FROM users WHERE username = :u LIMIT 1');
+        $stmt = $pdo->prepare('SELECT id, username, password, role FROM users WHERE username = :u LIMIT 1');
         $stmt->execute(['u' => $username]);
         $row = $stmt->fetch();
 
         if ($row && password_verify($password, $row['password'])) {
-            loginUser((int) $row['id'], (string) $row['username']);
+            $role = isset($row['role']) && in_array($row['role'], ['admin', 'editor'], true) ? (string) $row['role'] : 'editor';
+            loginUser((int) $row['id'], (string) $row['username'], $role);
             $target = $_SESSION['redirect_after_login'] ?? null;
             unset($_SESSION['redirect_after_login']);
             $go = url('posts/index.php');

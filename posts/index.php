@@ -23,13 +23,15 @@ if ($page < 1) {
 
 $pdo = getDatabaseConnection();
 $hasSearch = $searchRaw !== '';
+$canDelete = canDeletePost();
 
 if ($hasSearch) {
     $like = '%' . escapeLikePattern($searchRaw) . '%';
     $countStmt = $pdo->prepare('SELECT COUNT(*) FROM posts WHERE title LIKE :q OR content LIKE :q2');
     $countStmt->execute(['q' => $like, 'q2' => $like]);
 } else {
-    $countStmt = $pdo->query('SELECT COUNT(*) FROM posts');
+    $countStmt = $pdo->prepare('SELECT COUNT(*) FROM posts');
+    $countStmt->execute();
 }
 $totalPosts = (int) $countStmt->fetchColumn();
 
@@ -127,11 +129,15 @@ layoutHeader('Posts', 'posts');
                 ?></p>
                 <div class="actions">
                     <a class="btn" href="<?php echo htmlspecialchars(url('posts/edit.php?id=' . (int) $post['id']), ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
-                    <form method="post" action="<?php echo htmlspecialchars(url('posts/delete.php'), ENT_QUOTES, 'UTF-8'); ?>" class="inline-form" onsubmit="return confirm('Delete this post?');">
-                        <?php echo csrfField(); ?>
-                        <input type="hidden" name="id" value="<?php echo (int) $post['id']; ?>">
-                        <button type="submit" class="btn danger">Delete</button>
-                    </form>
+                    <?php if ($canDelete) : ?>
+                        <form method="post" action="<?php echo htmlspecialchars(url('posts/delete.php'), ENT_QUOTES, 'UTF-8'); ?>" class="inline-form" onsubmit="return confirm('Delete this post?');">
+                            <?php echo csrfField(); ?>
+                            <input type="hidden" name="id" value="<?php echo (int) $post['id']; ?>">
+                            <button type="submit" class="btn danger">Delete</button>
+                        </form>
+                    <?php else : ?>
+                        <span class="hint">Only admin can delete</span>
+                    <?php endif; ?>
                 </div>
             </li>
         <?php endforeach; ?>

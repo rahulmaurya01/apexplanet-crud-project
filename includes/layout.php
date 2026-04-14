@@ -5,6 +5,7 @@ declare(strict_types=1);
 function layoutHeader(string $title, string $active = ''): void
 {
     $user = currentUsername();
+    $role = currentUserRole();
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +24,9 @@ function layoutHeader(string $title, string $active = ''): void
                 <a href="<?php echo htmlspecialchars(url('posts/index.php'), ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo $active === 'posts' ? 'active' : ''; ?>">Posts</a>
                 <a href="<?php echo htmlspecialchars(url('posts/create.php'), ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo $active === 'create' ? 'active' : ''; ?>">New post</a>
                 <span class="user-pill"><?php echo htmlspecialchars($user, ENT_QUOTES, 'UTF-8'); ?></span>
+                <?php if ($role !== null) : ?>
+                    <span class="role-pill"><?php echo htmlspecialchars(strtoupper($role), ENT_QUOTES, 'UTF-8'); ?></span>
+                <?php endif; ?>
                 <a href="<?php echo htmlspecialchars(url('logout.php'), ENT_QUOTES, 'UTF-8'); ?>">Logout</a>
             <?php else : ?>
                 <a href="<?php echo htmlspecialchars(url('login.php'), ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo $active === 'login' ? 'active' : ''; ?>">Login</a>
@@ -45,7 +49,7 @@ function layoutFooter(): void
     ?>
 </main>
 <footer class="site-footer">
-    <div class="container">ApexPlanet — PHP &amp; MySQL Tasks 2 &amp; 3</div>
+    <div class="container">ApexPlanet — PHP &amp; MySQL Tasks 2, 3 &amp; 4</div>
 </footer>
 </body>
 </html>
