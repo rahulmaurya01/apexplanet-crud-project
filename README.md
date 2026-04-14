@@ -46,6 +46,13 @@ apexplanet-crud-project/
 - **Secure session handling:** cookie flags (`HttpOnly`, `SameSite=Lax`, conditional `Secure`) + session ID regeneration at login
 - **User roles and permissions:** `users.role` (`admin` / `editor`) with role checks in `includes/auth.php`; only admin can delete posts
 
+## Task 5 — Final project status
+
+- All features from Tasks 1-4 integrated into a single working app
+- Final testing and debugging pass completed
+- Final report added: `FINAL_TEST_REPORT.md`
+- Project is submission-ready
+
 ## Run locally (XAMPP)
 
 1. Start Apache and MySQL.
@@ -62,4 +69,4 @@ apexplanet-crud-project/
 - [x] Task 2: Basic CRUD application
 - [x] Task 3: Advanced features implementation
 - [x] Task 4: Security enhancements
-- [ ] Task 5: Final project and certification
+- [x] Task 5: Final project and certification

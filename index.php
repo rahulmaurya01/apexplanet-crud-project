@@ -24,8 +24,8 @@ try {
 layoutHeader('Home', '');
 ?>
 <section class="hero">
-    <h1>Blog CRUD — Tasks 2 &amp; 3</h1>
-    <p class="lead">Register or log in to manage posts. The posts list includes search and pagination (Task 3).</p>
+    <h1>Blog CRUD — Final Project (Tasks 1-5)</h1>
+    <p class="lead">Integrated CRUD, authentication, search, pagination, and security enhancements.</p>
     <p class="db-pill <?php echo $dbOk ? 'ok' : 'bad'; ?>"><strong>Status:</strong> <?php echo htmlspecialchars($dbMessage, ENT_QUOTES, 'UTF-8'); ?></p>
     <div class="hero-actions">
         <a class="btn primary" href="<?php echo htmlspecialchars(url('register.php'), ENT_QUOTES, 'UTF-8'); ?>">Register</a>

@@ -49,7 +49,7 @@ function layoutFooter(): void
     ?>
 </main>
 <footer class="site-footer">
-    <div class="container">ApexPlanet — PHP &amp; MySQL Tasks 2, 3 &amp; 4</div>
+    <div class="container">ApexPlanet — PHP &amp; MySQL Final Project (Tasks 1-5)</div>
 </footer>
 </body>
 </html>
