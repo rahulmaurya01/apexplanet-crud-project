@@ -2,15 +2,14 @@
 
 ## Objective
 
-Add advanced application features after core CRUD is stable.
+Search, pagination, and improved UI on the posts listing.
 
-## Suggested items
+## Implemented
 
-- Search and filtering
-- Pagination
-- Better UI structure
-- Validation improvements
+- **Search:** `posts/index.php` — `q` query param; SQL `WHERE title LIKE … OR content LIKE …` with `escapeLikePattern()` in `includes/search.php`
+- **Pagination:** 5 posts per page (`POSTS_PER_PAGE`); numbered links + Previous/Next; `q` preserved when changing pages
+- **UI:** Search bar, page meta line, pagination nav, card hover, mobile-friendly layout (`assets/style.css`)
 
 ## Status
 
-Pending.
+Completed.

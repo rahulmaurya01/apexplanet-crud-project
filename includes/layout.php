@@ -45,7 +45,7 @@ function layoutFooter(): void
     ?>
 </main>
 <footer class="site-footer">
-    <div class="container">ApexPlanet — PHP &amp; MySQL Task 2</div>
+    <div class="container">ApexPlanet — PHP &amp; MySQL Tasks 2 &amp; 3</div>
 </footer>
 </body>
 </html>

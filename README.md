@@ -32,6 +32,12 @@ apexplanet-crud-project/
 - **CSRF** tokens on mutating forms
 - **Base URL** auto-detected from document root (`config/app.php`)
 
+## Task 3 — What works
+
+- **Search:** GET form on `posts/index.php`; filters by **title** or **content** (`LIKE`, wildcards escaped)
+- **Pagination:** 5 posts per page; page numbers + Prev/Next; search query preserved in URLs
+- **UI:** Toolbar, search bar, pagination, responsive tweaks (`assets/style.css`)
+
 ## Run locally (XAMPP)
 
 1. Start Apache and MySQL.
@@ -44,6 +50,6 @@ apexplanet-crud-project/
 
 - [x] Task 1: Setting up development environment
 - [x] Task 2: Basic CRUD application
-- [ ] Task 3: Advanced features implementation
+- [x] Task 3: Advanced features implementation
 - [ ] Task 4: Security enhancements
 - [ ] Task 5: Final project and certification
